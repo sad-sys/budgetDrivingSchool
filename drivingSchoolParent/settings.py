@@ -25,7 +25,7 @@ SECRET_KEY = "django-insecure-)oplcn_m=#3!5&%w8ld(b3(x8yh=4k$ql#jkb3m+p4m962xon-
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ["budgetdrivingschool-cnyxh.ondigitalocean.app"]
+ALLOWED_HOSTS = ["budgetdrivingschool-cnyxh.ondigitalocean.app","127.0.0.1"]
 
 
 # Application definition

@@ -77,6 +77,17 @@
             padding: 15px;
             font-size: 0.9rem;
         }
+        ul {
+            list-style-type: none;
+            padding: 0;
+        }
+        ul li {
+            background: white;
+            padding: 12px;
+            margin-bottom: 10px;
+            border-radius: 6px;
+            box-shadow: 0 1px 4px rgba(0,0,0,0.1);
+        }
     </style>
 </head>
 <body>
@@ -84,14 +95,12 @@
     <header>
         <h1>Budget Driving School</h1>
         <p>Quality Driving, Quality Prices</p>
-    </header>
 
-    <nav>
         <a href="#home">Home</a>
         <a href="#courses">Courses</a>
         <a href="#pricing">Pricing</a>
         <a href="#contact">Contact</a>
-    </nav>
+    </header>
 
     <section id="home">
         <h2>Welcome</h2>
@@ -105,7 +114,12 @@
 
     <section id="pricing">
         <h2>Pricing</h2>
-        <p>Affordable packages starting from just £25 per hour.</p>
+        <ul>
+            <li>Flat hourly rate: <strong>£40 per hour</strong></li>
+            <li>10-hour block booking: <strong>£36 per hour</strong> (total £360)</li>
+            <li>20-hour block booking: <strong>£34 per hour</strong> (total £680)</li>
+            <li>2.5-hour test preparation & vehicle hire: <strong>£125</strong></li>
+        </ul>
     </section>
 
     <section id="contact">
