@@ -38,7 +38,8 @@ INSTALLED_APPS = [
     "django.contrib.messages",
     "django.contrib.staticfiles",
     'main',
-    'appointment'
+    'appointment',
+    'django_q'
 ]
 
 MIDDLEWARE = [
@@ -138,3 +139,17 @@ APPOINTMENT_FINISH_TIME = (16, 30)
 
 # Use default Django user model
 AUTH_USER_MODEL = 'auth.User'
+
+Q_CLUSTER = \
+{
+    'name': 'DjangORM',
+    'workers': 4,
+    'timeout': 90,
+    'retry': 120,
+    'queue_limit': 50,
+    'bulk': 10,
+    'orm': 'default',
+}
+
+EMAIL_BACKEND = "django.core.mail.backends.console.EmailBackend"
+DEFAULT_FROM_EMAIL = "noreply@budgetdrivingschool.test"
