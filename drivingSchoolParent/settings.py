@@ -14,11 +14,21 @@ SECRET_KEY = os.environ.get(
 )
 DEBUG = os.environ.get("DJANGO_DEBUG", "False") == "True"
 
+# allow both your custom domains + DO preview host
 ALLOWED_HOSTS = [
+    "budgetdrivingschoolreading.com",
+    "www.budgetdrivingschoolreading.com",
     "budgetdrivingschool-cnyxh.ondigitalocean.app",
-    "127.0.0.1",
-    "localhost",
 ]
+
+# Django 4+: CSRF_TRUSTED_ORIGINS must include scheme
+CSRF_TRUSTED_ORIGINS = [
+    "https://budgetdrivingschoolreading.com",
+    "https://www.budgetdrivingschoolreading.com",
+    "https://budgetdrivingschool-cnyxh.ondigitalocean.app",
+]
+
+
 
 # APPLICATIONS
 INSTALLED_APPS = [
@@ -84,9 +94,10 @@ AUTH_PASSWORD_VALIDATORS = [
 
 # INTERNATIONALIZATION
 LANGUAGE_CODE = "en-us"
-TIME_ZONE = "UTC"
-USE_I18N = True
+TIME_ZONE = "Europe/London"
 USE_TZ = True
+USE_I18N = True
+
 
 # STATIC FILES
 STATIC_URL = "/static/"
@@ -128,5 +139,29 @@ Q_CLUSTER = {
 }
 
 # EMAIL
-EMAIL_BACKEND = "django.core.mail.backends.console.EmailBackend"
-DEFAULT_FROM_EMAIL = "noreply@budgetdrivingschool.test"
+EMAIL_BACKEND = "django.core.mail.backends.smtp.EmailBackend"
+EMAIL_HOST = "smtp.sendgrid.net"
+EMAIL_PORT = 587
+EMAIL_USE_TLS = True
+EMAIL_HOST_USER = "apikey"  # literally "apikey"
+EMAIL_HOST_PASSWORD = os.environ.get("SENDGRID_API_KEY")  # set this in DO/locally
+DEFAULT_FROM_EMAIL = "Budget Driving School <noreply@budgetdrivingschoolreading.com>"
+
+
+import os
+from sendgrid import SendGridAPIClient
+from sendgrid.helpers.mail import Mail
+
+message = Mail(
+    from_email='noreply@budgetdrivingschoolreading.com',
+    to_emails='khawajasadiq25@gmail.com',
+    subject='Test from Budget Driving School',
+    html_content='<strong>This is a test email using SendGrid API</strong>'
+)
+
+try:
+    sg = SendGridAPIClient(os.environ.get("SENDGRID_API_KEY"))
+    response = sg.send(message)
+    print(response.status_code)   # should be 202 if accepted
+except Exception as e:
+    print(str(e))
