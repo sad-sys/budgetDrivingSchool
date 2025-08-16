@@ -1,136 +1,210 @@
+{% load static %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Budget Driving School</title>
-    <style>
-        html {
-            scroll-behavior: smooth;
-            scroll-padding-top: 157px;
-        }
-        body {
-            font-family: Arial, sans-serif;
-            margin: 0;
-            line-height: 1.6;
-        }
-        header {
-            background: linear-gradient(135deg, #2c3e50, #1a252f);
-            color: white;
-            padding: 20px;
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Budget Driving School</title>
+  <style>
+    :root {
+      --header-height: 110px;
+      --brand-dark: #2c3e50;
+      --brand-darker: #1a252f;
+      --brand-accent: #1abc9c;
+      --nav-bg: #34495e;
+    }
+
+    html {
+      scroll-behavior: smooth;
+      scroll-padding-top: var(--header-height);
+    }
+
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      line-height: 1.6;
+      background: #f8f9fa;
+      color: #222;
+    }
+
+    /* Header + Nav */
+    header {
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      background: linear-gradient(135deg, var(--brand-dark), var(--brand-darker));
+      color: #fff;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.3);
+      min-height: var(--header-height);
+    }
+    .header-inner {
+      padding: 20px;
+      text-align: center;
+    }
+    nav {
+      background: var(--nav-bg);
+      display: flex;
+      justify-content: center;
+      gap: 20px;
+      padding: 10px 0;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.2);
+    }
+    nav a {
+      color: #fff;
+      text-decoration: none;
+      font-weight: bold;
+      padding: 6px 12px;
+      border-radius: 4px;
+      transition: background-color 0.25s ease, transform 0.1s ease;
+    }
+    nav a:hover {
+      background: var(--brand-accent);
+      color: #fff;
+      transform: translateY(-1px);
+    }
+
+    /* Sections */
+    section {
+      min-height: 100vh;
+      padding: 50px;
+      box-sizing: border-box;
+      background: #fff;
+    }
+    #home { background: #f8f9fa; }
+    #pricing { background: #d0d6d9; }
+    #contact { background: var(--brand-dark); color: #fff; }
+
+    h2 {
+      border-bottom: 3px solid var(--brand-accent);
+      padding-bottom: 8px;
+      margin-bottom: 20px;
+    }
+
+    ul {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+    }
+    ul li {
+      background: #fff;
+      padding: 12px;
+      margin-bottom: 10px;
+      border-radius: 6px;
+      box-shadow: 0 1px 4px rgba(0,0,0,0.1);
+    }
+    #contact ul li { background: rgba(255,255,255,0.1); box-shadow: none; }
+
+    footer {
+      background: var(--brand-dark);
+      color: #fff;
+      text-align: center;
+      padding: 15px;
+      font-size: 0.9rem;
+    }
+
+    /* Animation */
+    @keyframes fadeInUp {
+      0% { transform: translateY(24px); opacity: 0; }
+      100% { transform: translateY(0); opacity: 1; }
+    }
+    .fadeInUp {
+      animation: fadeInUp 600ms ease-out both;
+    }
+
+    /* Home layout */
+    .home-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 20px;
+    flex-wrap: nowrap; /* stop wrapping unless on small screens */
+    }
+
+    .home-content .text {
+    flex: 1; /* let text take remaining space */
+    max-width: 60%;
+    }
+
+    .home-content .image {
+    flex: 0 0 35%; /* reserve about 35% of the row for the image */
+    display: flex;
+    justify-content: flex-end; /* push the image to the right */
+    }
+
+    .home-content .image img {
+    width: 100%; /* fill the flex container */
+    height: auto;
+    display: block;
+    }
+
+    @media (max-width: 900px) {
+        .home-content {
+            flex-direction: column;
             text-align: center;
-            position: sticky;
-            top: 0;
-            z-index: 1000;
-            box-shadow: 0 2px 8px rgba(0,0,0,0.3);
         }
-        nav {
-            background-color: #34495e;
-            display: flex;
+        .home-content .text {
+            max-width: 100%;
+        }
+        .home-content .image {
+            flex: unset;
             justify-content: center;
-            gap: 20px;
-            padding: 10px 0;
-            position: sticky;
-            top: 70px;
-            z-index: 999;
-            box-shadow: 0 2px 6px rgba(0,0,0,0.2);
         }
-        nav a {
-            color: white;
-            text-decoration: none;
-            font-weight: bold;
-            padding: 6px 12px;
-            border-radius: 4px;
-            transition: background-color 0.3s ease;
+        .home-content .image img {
+            width: 80%;
+            margin-top: 20px;
         }
-        nav a:hover {
-            background-color: #1abc9c;
-            color: white;
         }
-        section {
-            min-height: 100vh;
-            padding: 50px;
-            box-sizing: border-box;
-        }
-        #home {
-            background-color: #f8f9fa;
-        }
-        #courses {
-            background-color: #ecf0f1;
-        }
-        #pricing {
-            background-color: #d0d6d9;
-        }
-        #contact {
-            background-color: #2c3e50;
-            color: white;
-        }
-        h2 {
-            border-bottom: 3px solid #1abc9c;
-            padding-bottom: 8px;
-            margin-bottom: 20px;
-        }
-        footer {
-            background-color: #2c3e50;
-            color: white;
-            text-align: center;
-            padding: 15px;
-            font-size: 0.9rem;
-        }
-        ul {
-            list-style-type: none;
-            padding: 0;
-        }
-        ul li {
-            background: white;
-            padding: 12px;
-            margin-bottom: 10px;
-            border-radius: 6px;
-            box-shadow: 0 1px 4px rgba(0,0,0,0.1);
-        }
-    </style>
+  </style>
 </head>
+
 <body>
+  <header>
+    <div class="header-inner">
+      <h1>Budget Driving School</h1>
+      <p>Quality Driving, Quality Prices</p>
+    </div>
+    <nav>
+      <a href="#home">Home</a>
+      <a href="#pricing">Pricing</a>
+      <a href="#contact">Contact</a>
+    </nav>
+  </header>
 
-    <header>
-        <h1>Budget Driving School</h1>
-        <p>Quality Driving, Quality Prices</p>
-
-        <a href="#home">Home</a>
-        <a href="#courses">Courses</a>
-        <a href="#pricing">Pricing</a>
-        <a href="#contact">Contact</a>
-    </header>
-
-    <section id="home">
-        <h2>Welcome</h2>
-        <p>We provide professional driving lessons for beginners and experienced drivers.</p>
-    </section>
-
-    <section id="courses">
-        <h2>Our Courses</h2>
-        <p>We offer beginner, refresher, and advanced driving lessons with certified instructors.</p>
+  <!-- Animate only the main content, not the sticky header -->
+  <main class="fadeInUp">
+    <section id="home" class="home-section">
+      <div class="home-content">
+        <div class="text">
+          <h2>Quality Lessons a Click Away</h2>
+          <p>We provide professional driving lessons for beginners and experienced drivers.</p>
+        </div>
+        <div class="image">
+          <img src="{% static 'main/firstPic.png' %}" alt="First pic">
+        </div>
+      </div>
     </section>
 
     <section id="pricing">
-        <h2>Pricing</h2>
-        <ul>
-            <li>Flat hourly rate: <strong>£40 per hour</strong></li>
-            <li>10-hour block booking: <strong>£36 per hour</strong> (total £360)</li>
-            <li>20-hour block booking: <strong>£34 per hour</strong> (total £680)</li>
-            <li>2.5-hour test preparation & vehicle hire: <strong>£125</strong></li>
-        </ul>
+      <h2>Pricing</h2>
+      <ul>
+        <li>Flat hourly rate: <strong>£40 per hour</strong></li>
+        <li>10-hour block booking: <strong>£36 per hour</strong> (total £360)</li>
+        <li>20-hour block booking: <strong>£34 per hour</strong> (total £680)</li>
+        <li>2.5-hour test preparation &amp; vehicle hire: <strong>£125</strong></li>
+      </ul>
     </section>
 
     <section id="contact">
-        <h2>Contact Us</h2>
-        <p>Email: info@budgetdrivingschool.com</p>
-        <p>Phone: 01234 567 890</p>
+      <h2>Contact Us</h2>
+      <ul>
+        <li>Email: <a href="mailto:fareedrali@yahoo.co.uk">fareedrali@yahoo.co.uk</a></li>
+        <li>Phone: <a href="tel:07411559083">07411 559083</a></li>
+      </ul>
     </section>
+  </main>
 
-    <footer>
-        &copy; 2025 Budget Driving School. All Rights Reserved.
-    </footer>
-
+  <footer>
+    &copy; 2025 Budget Driving School. All Rights Reserved.
+  </footer>
 </body>
 </html>
