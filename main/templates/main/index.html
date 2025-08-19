@@ -111,52 +111,58 @@
       animation: fadeInUp 600ms ease-out both;
     }
 
-    /* Home layout */
+    /* Shared two-column layout */
     .home-content {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    gap: 20px;
-    flex-wrap: nowrap; /* stop wrapping unless on small screens */
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 20px;
+      flex-wrap: nowrap;
     }
 
     .home-content .text {
-    flex: 1; /* let text take remaining space */
-    max-width: 60%;
+      flex: 1;
+      max-width: 60%;
     }
 
     .home-content .image {
-    flex: 0 0 35%; /* reserve about 35% of the row for the image */
-    display: flex;
-    justify-content: flex-end; /* push the image to the right */
+      flex: 0 0 35%;
+      display: flex;
+      justify-content: flex-end;
     }
 
     .home-content .image img {
-    width: 100%; /* fill the flex container */
-    height: auto;
-    display: block;
+      width: 100%;
+      height: auto;
+      display: block;
     }
 
     @media (max-width: 900px) {
-        .home-content {
-            flex-direction: column;
-            text-align: center;
-        }
-        .home-content .text {
-            max-width: 100%;
-        }
-        .home-content .image {
-            flex: unset;
-            justify-content: center;
-        }
-        .home-content .image img {
-            width: 80%;
-            margin-top: 20px;
-        }
-        }
+      .home-content {
+        flex-direction: column;
+        text-align: center;
+      }
+      .home-content .text {
+        max-width: 100%;
+      }
+      .home-content .image {
+        flex: unset;
+        justify-content: center;
+      }
+      .home-content .image img {
+        width: 80%;
+        margin-top: 20px;
+      }
+    }
   </style>
 </head>
-<script async src="https://www.googletagmanager.com/gtag/js?id=AW-17489462934"></script> <script> window.dataLayer = window.dataLayer || []; function gtag(){dataLayer.push(arguments);} gtag('js', new Date()); gtag('config', 'AW-17489462934'); </script>
+<script async src="https://www.googletagmanager.com/gtag/js?id=AW-17489462934"></script> 
+<script> 
+  window.dataLayer = window.dataLayer || []; 
+  function gtag(){dataLayer.push(arguments);} 
+  gtag('js', new Date()); 
+  gtag('config', 'AW-17489462934'); 
+</script>
 <body>
   <header>
     <div class="header-inner">
@@ -185,27 +191,35 @@
     </section>
 
     <section id="pricing">
-      <h2>Pricing</h2>
-      <ul>
-        <li>Flat hourly rate: <strong>£40 per hour</strong></li>
-        <li>10-hour block booking: <strong>£36 per hour</strong> (total £360)</li>
-        <li>20-hour block booking: <strong>£34 per hour</strong> (total £680)</li>
-        <li>2.5-hour test preparation &amp; vehicle hire: <strong>£125</strong></li>
-      </ul>
-      <div class="image">
-        <img src="{% static 'main/mSuggestion.jpeg' %}" alt="First pic">
+      <div class="home-content">
+        <div class="text">
+          <h2>Pricing</h2>
+          <ul>
+            <li>Flat hourly rate: <strong>£40 per hour</strong></li>
+            <li>10-hour block booking: <strong>£36 per hour</strong> (total £360)</li>
+            <li>20-hour block booking: <strong>£34 per hour</strong> (total £680)</li>
+            <li>2.5-hour test preparation &amp; vehicle hire: <strong>£125</strong></li>
+          </ul>
+        </div>
+        <div class="image">
+          <img src="{% static 'main/mSuggestion.jpeg' %}" alt="Pricing">
+        </div>
       </div>
     </section>
 
     <section id="contact">
-      <h2>Contact Us</h2>
-      <ul>
-        <li>Email: <a href="mailto:info.bdsreading@gmail.com">info.bdsreading@gmail.com</a></li>
-        <li>Phone: <a href="tel:07411559083">07411 559083</a></li>
-      </ul>
-      <div class="image">
-        <img src="{% static 'main/successfulPerson.jpeg' %}" alt="First pic">
-      </div
+      <div class="home-content">
+        <div class="text">
+          <h2>Contact Us</h2>
+          <ul>
+            <li>Email: <a href="mailto:info.bdsreading@gmail.com">info.bdsreading@gmail.com</a></li>
+            <li>Phone: <a href="tel:07411559083">07411 559083</a></li>
+          </ul>
+        </div>
+        <div class="image">
+          <img src="{% static 'main/successfulPerson.jpeg' %}" alt="Contact">
+        </div>
+      </div>
     </section>
   </main>
 
