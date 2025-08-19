@@ -148,22 +148,3 @@ EMAIL_USE_TLS = True
 EMAIL_HOST_USER = "apikey"  # literally "apikey"
 EMAIL_HOST_PASSWORD = os.environ.get("SENDGRID_API_KEY")  # set this in DO/locally
 DEFAULT_FROM_EMAIL = "Budget Driving School <noreply@budgetdrivingschoolreading.com>"
-
-
-import os
-from sendgrid import SendGridAPIClient
-from sendgrid.helpers.mail import Mail
-
-message = Mail(
-    from_email='noreply@budgetdrivingschoolreading.com',
-    to_emails='khawajasadiq25@gmail.com',
-    subject='Test from Budget Driving School',
-    html_content='<strong>This is a test email using SendGrid API</strong>'
-)
-
-try:
-    sg = SendGridAPIClient(os.environ.get("SENDGRID_API_KEY"))
-    response = sg.send(message)
-    print(response.status_code)   # should be 202 if accepted
-except Exception as e:
-    print(str(e))
