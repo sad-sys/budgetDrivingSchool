@@ -19,6 +19,7 @@ ALLOWED_HOSTS = [
     "budgetdrivingschoolreading.com",
     "www.budgetdrivingschoolreading.com",
     "budgetdrivingschool-cnyxh.ondigitalocean.app",
+    "http://127.0.0.1:8000/"
 ]
 
 # Django 4+: CSRF_TRUSTED_ORIGINS must include scheme
@@ -26,6 +27,7 @@ CSRF_TRUSTED_ORIGINS = [
     "https://budgetdrivingschoolreading.com",
     "https://www.budgetdrivingschoolreading.com",
     "https://budgetdrivingschool-cnyxh.ondigitalocean.app",
+    "http://127.0.0.1:8000/"
 ]
 
 
